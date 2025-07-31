@@ -1,0 +1,729 @@
+@font-face {
+  font-family: "Humane";
+  src: url("./fonts/Humane-Bold.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  color: var(--gray);
+}
+
+@font-face {
+  font-family: "Head";
+  src: url("./fonts/Headfont.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  color: var(--black);
+}
+
+@font-face {
+  font-family: "Standard";
+  src: url("./fonts/Generalfont.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  color: var(--gray);
+}
+
+@font-face {
+  font-family: "Screamer";
+  src: url("./fonts/font.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  color: var(--gray);
+}
+
+/* Color palette and design tokens */
+:root {
+  --gray: #3d4448;
+  --footer: #494F4E;
+  --white: #ffffff;
+  --black: #000000;
+  --hover: #eaeaea;
+  --background: #e0e0e0;
+}
+
+/* Reset default browser styles */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Head";
+  background-color: var(--background);
+  color: var(--gray);
+}
+
+/* Sticky header with animated border */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: var(--background);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Animated bottom border (controlled by JavaScript) */
+header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: var(--border-width);
+  background-color: var(--hover);
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: "Head";
+  font-weight: 100;
+  font-size: 2.5rem;
+  color: var(--gray);
+  letter-spacing: 1px;
+}
+
+/* Navigation menu styling */
+nav {
+  display: flex;
+  gap: 2.5rem;
+}
+
+nav a {
+  font-weight: bold;
+  color: var(--gray);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--black);
+}
+
+/* Mobile hamburger menu icon */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger div {
+  width: 26px;
+  height: 3px;
+  background: var(--black);
+}
+
+/* Mobile navigation dropdown */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  background: var(--gray);
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--hover);
+}
+
+.mobile-nav a {
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  color: var(--background);
+  text-decoration: none;
+}
+
+.mobile-nav a:hover {
+  color: var(--gray);
+}
+
+/* Main content area with sidebar offset */
+main {
+  padding-left: 103px;
+  position: relative;
+}
+
+/* Fixed social media sidebar */
+.social-sidebar {
+  position: absolute;
+  width: 103px;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  margin: 0 auto;
+  padding: 2rem;
+  height: 100%;
+  background-color: var(--background);
+}
+
+/* Animated right border for sidebar */
+.social-sidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: var(--border-height);
+  width: 1px;
+  background-color: var(--hover);
+}
+
+/* Sticky social icons container */
+.social-sidebar nav {
+  position: sticky;
+  top: 8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Individual social media icon styling */
+.social-sidebar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--gray);
+  border-radius: 50%;
+  background-color: var(--background);
+  color: var(--gray);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.social-sidebar a:hover {
+  background-color: var(--gray);
+  color: var(--background);
+}
+
+.social-sidebar svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Mobile sidebar layout */
+@media (max-width: 768px) {
+  main {
+    padding-left: 0;
+  }
+
+  .social-sidebar {
+    position: sticky;
+    top: unset;
+    padding: 1rem;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+  }
+
+  .social-sidebar nav {
+    position: relative;
+    top: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social-sidebar::after {
+    width: 100%;
+    height: 1px;
+  }
+}
+
+/* Footer section */
+footer {
+  background: #111111;
+  color: var(--white);
+  padding: 3rem 2rem;
+  min-height: 50vh;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.footer-logo {
+  font-family: "Humane";
+  font-size: 2rem;
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color:  #292929;
+}
+
+.footer-links,
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-links a,
+.footer-contact a {
+  color: var(--background);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+  color: var(--hover);
+}
+
+/* Mobile header behavior */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-nav.show {
+    display: flex;
+  }
+}
+
+/* Hero section with background image */
+.hero {
+  position: relative;
+  min-height: calc(50rem - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('images/hero.png');
+  padding: 2rem;
+  text-align: center;
+  overflow: hidden;
+  padding-left: 103px;
+  padding-top: 1rem;
+  background-color: #253842;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Hero tape image container for animations */
+.hero-tape-wrapper {
+  position: absolute;
+  z-index: 4 !important;
+  left: 0;
+  top: 0;
+  height: 45rem;
+  width: 100%;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hero tape image styling */
+.hero-tape {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+  scale: 0.6;
+  filter: drop-shadow(8px 8px 12px rgba(0, 0, 0, 0.15));
+  transform: rotate(20deg) scale(0.6);
+  transition: filter 0.3s ease;
+  z-index: 5 !important;
+}
+
+.intro-cover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  object-fit: contain;
+  scale: 0.8;
+  margin-left: -3rem;
+}
+
+/* Hero title typography */
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 20vh;
+  position: relative;
+  z-index: 3;
+}
+
+.hero-title .first-name {
+  font-family: "Humane", sans-serif;
+  font-size: clamp(6rem, 100vw, 17rem);
+  font-weight: 400;
+  color: #e0e0e0;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.hero-title .last-name {
+  font-family: "Sloop", sans-serif;
+  font-size: 2.5rem;
+  color: #fff;
+  font-style: italic;
+  margin-top: -1.5rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.01em;
+  margin-left: 25rem;
+}
+
+.hero-title .subtitle {
+  font-family: "Standard", sans-serif;
+  font-size: 1.1rem;
+  color: #fff;
+  letter-spacing: 0.2em;
+  text-align: center;
+  margin-top: 4rem;
+  opacity: 0.8;
+}
+
+/* Mobile hero adjustments */
+@media (max-width: 768px) {
+  .hero {
+    min-height: calc(30rem - 80px);
+  }
+
+  .hero-tape-wrapper {
+    height: 12rem;
+  }
+
+  .hero-content h1 {
+    font-size: 10vw;
+  }
+}
+
+/* About me section */
+.section-intro {
+  background-color: var(--background);
+  border-top: 1px solid var(--hover);
+  padding: 1rem 2rem;
+  position: relative;
+  z-index: 1;
+  background-image: url('images/intro.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Two-column layout for intro section */
+.intro-grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+  justify-content: space-between;
+}
+
+.intro-left {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.intro-left,
+.intro-right {
+  max-width: 30%;
+}
+
+/* Section label styling */
+.small-title {
+  font-family: "Head";
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--footer);
+  margin-bottom: 1rem;
+}
+
+/* Main heading typography */
+.main-heading {
+  font-family: "Humane";
+  font-weight: 100;
+  text-transform: uppercase;
+  font-size: 4.5rem;
+  line-height: 0.8;
+  color: var(--gray);
+  margin-bottom: 1.5rem;
+}
+
+/* Description text styling */
+.description {
+  font-family: "sloop";
+  font-size: 2.7rem;
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Mobile intro section layout */
+@media (max-width: 768px) {
+  .intro-grid {
+    text-align: center;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  .intro-left,
+  .intro-right {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .intro-left {
+    padding-right: 0;
+  }
+
+  .main-heading {
+    font-size: 2.5rem;
+  }
+}
+
+/* Tech stack container */
+.tech-stack-log {
+  background: transparent;
+  padding: 1rem 0;
+}
+
+/* Tech stack section title */
+.tech-stack-title {
+  font-family: "Humane";
+  font-weight: 100;
+  text-transform: uppercase;
+  font-size: 4.5rem;
+  line-height: 0.8;
+  color: var(--gray);
+  margin-bottom: 1.5rem;
+}
+
+/* Individual tech stack item */
+.tech-stack-item {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.ingredient-qty {
+  font-family: "Standard", serif;
+  font-size: 2.5rem;
+  color: var(--footer);
+  min-width: 90px;
+  text-align: left;
+  line-height: 1;
+}
+
+.tech-stack-text {
+  max-width: 400px;
+}
+
+.tech-stack-text strong {
+  font-family: "Standard", serif;
+  font-size: 1.2rem;
+  color: var(--gray);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.tech-stack-text p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--black);
+  margin: 0;
+}
+
+/* Mobile tech stack layout */
+@media (max-width: 768px) {
+  .tech-stack-item {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .ingredient-qty {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .tech-stack-text {
+    max-width: 100%;
+  }
+
+  .tech-stack-title {
+    text-align: center;
+    font-size: 2.5rem;
+  }
+}
+
+/* Projects section */
+.projects-section {
+  padding: 6rem 0rem 3rem;
+  display: flex;
+  flex-direction: column;
+  background-image: url('images/timeline.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #32373d;
+}
+
+/* Individual project entry */
+.project-entry {
+  margin: 0;
+  padding: 0 2rem 0;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  min-height: 500px;
+  max-width: 100%;
+}
+
+/* Alternating project layout */
+.project-entry:nth-child(odd) {
+  margin-left: auto;
+}
+
+.project-entry:nth-child(odd) .project-left {
+  order: 2;
+}
+
+.project-entry:nth-child(odd) .project-right {
+  order: 1;
+}
+
+.project-entry:nth-child(even) {
+  margin-right: auto;
+}
+
+.project-entry:last-child {
+  margin-bottom: 0rem;
+}
+
+/* Projects section title */
+.projects-main-title {
+  padding: 0 2rem 0rem;
+  font-weight: 100;
+  font-family: "Humane", serif;
+  font-size: 10rem;
+  line-height: 1.2;
+  color: var(--gray);
+  margin-bottom: 0rem;
+}
+
+.projects-sub-title {
+  font-family: "Sloop", sans-serif;
+  font-size: 2.5rem;
+  color: #fff;
+  font-style: italic;
+  margin-top: -7rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.01em;
+  margin-right: 8rem;
+  text-align: right;
+}
+
+/* Project image container */
+.project-left {
+  flex: 0 0 300px;
+  text-align: center;
+}
+
+.timeline-date {
+  font-family: "Head", serif;
+  font-size: 4rem;
+  color: var(--gray);
+  line-height: 1;
+  transform: translateY(30px);
+}
+
+.project-img {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.5rem;
+}
+
+/* Project description container */
+.project-right {
+  flex: 1;
+  max-width: 100%;
+}
+
+.project-title {
+  font-family: "Head";
+  font-size: 2rem;
+  color: var(--footer);
+  margin-bottom: 1rem;
+}
+
+.project-description {
+  font-family: "Standard";
+  font-size: 1.05rem;
+  color: var(--black);
+  line-height: 1.6;
+  color: #fff;
+}
+
+/* Mobile projects layout */
+@media (max-width: 768px) {
+  .projects-section {
+    padding: 3rem 0rem 3rem;
+  }
+
+  .projects-main-title {
+    font-family: "Screamer";
+    font-size: 4rem;
+    text-align: center;
+  }
+
+  .project-entry {
+    flex-direction: column;
+    text-align: center;
+    margin: 0 auto 2rem;
+    gap: 1rem;
+    max-width: 100%;
+    min-height: unset;
+  }
+
+  .project-left {
+    margin-bottom: 2rem;
+  }
+
+  .project-title {
+    font-size: 1.5rem;
+  }
+
+  .timeline-date {
+    font-size: 3rem;
+  }
+
+  .project-entry:nth-child(odd) .project-right {
+    order: 2;
+  }
+}
